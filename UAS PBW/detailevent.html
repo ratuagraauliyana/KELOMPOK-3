@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detail Event - Taylor Swift</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+    }
+    .event-container-wrapper {
+      background-color: #8a63d2;
+      padding: 40px 0;
+    }
+    .event-container {
+      background: #8a63d2;
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .event-img {
+      width: 300px;
+      border-radius: 20px;
+    }
+    .event-info {
+      background-color: black;
+      border-radius: 15px;
+      padding: 20px;
+      flex: 1;
+    }
+    .event-info h4 {
+      margin-bottom: 10px;
+    }
+    .status-available {
+      color: #28a745;
+      font-weight: bold;
+    }
+    .ticket-button {
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 30px;
+      margin-right: 10px;
+    }
+    .notification {
+      background-color: #333;
+      color: #ccc;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="event-container-wrapper">
+  <div class="container py-4">
+    <div class="d-flex align-items-center mb-3 gap-2">
+      <a href="home.html" class="text-black text-decoration-none fs-5">←</a>
+      <h5 class="mb-0 text-black fw-medium">Detail Event</h5>
+    </div>
+
+    <div class="event-container">
+      <img src="image/taylor swift the eras tour.jpeg" alt="Taylor Swift – The Eras Tour" class="event-img" />
+      <div class="event-info">
+        <h4>
+          Taylor Swift – The Eras Tour
+          <i class="bi bi-heart ms-2"></i>
+          <span>12687</span>
+        </h4>
+        <p>A spectacular concert from Taylor Swift, featuring songs from every era of her music.</p>
+        <p><strong>Event date:</strong> 17–18 Mei 2025</p>
+        <p><strong>Location:</strong> Gelora Bung Karno, Jakarta</p>
+        <button class="ticket-button">Get ticket</button>
+        <span class="status-available">Available</span>
+        <div class="notification mt-3">****gy44 has purchased a VIP ticket <strong>Taylor Swift – The Eras Tour</strong> 1 minute ago</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="background-color: black; min-height: 100vh; padding: 40px 20px;">
+  <div class="text-center mb-4">
+    <h4 style="color: white; font-weight: 600;">
+      Taylor Swift – The Eras Tour &nbsp;&nbsp; Seating Plan & Price
+    </h4>
+  </div>
+
+  <div class="d-flex flex-wrap justify-content-center align-items-start gap-4">
+    <div style="background-color: #5e3ca5; border-radius: 20px; padding: 20px 24px; width: 300px;">
+      <div style="background-color: #2b2b2b; border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; color: white; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-weight: 500;">VIP</div>
+          <div style="color: red; font-size: 14px;">Sold out</div>
+        </div>
+        <div>IDR 5,000,000</div>
+      </div>
+
+      <div style="background-color: rgba(43, 43, 43, 0.6); border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; color: white; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-weight: 500;">Regular</div>
+          <div style="color: rgb(12, 207, 61); font-size: 14px;">Available</div>
+        </div>
+        <div>IDR 2,000,000</div>
+      </div>
+
+      <div style="background-color: #2b2b2b; border-radius: 12px; padding: 12px 16px; color: white; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-weight: 500;">Festival</div>
+          <div style="color: red; font-size: 14px;">Sold out</div>
+        </div>
+        <div>IDR 3,500,000</div>
+      </div>
+    </div>
+
+    <div>
+      <img src="image/Seating Plan.png" style="max-width: 100%; border-radius: 20px;" alt="Seating Plan" />
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
