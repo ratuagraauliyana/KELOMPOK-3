@@ -55,6 +55,63 @@
       font-size: 14px;
       margin-top: 10px;
     }
+
+    #ticketPopup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(5px);
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #ticketPopup.show {
+      display: flex !important;
+    }
+
+    .Popup-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      color: black;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: black;
+    }
+
+    .popup-form {
+      background-color: black;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: left;
+    }
+    .popup-form label {
+      flex: 1;
+    }
+    .popup-form input,
+    .popup-form select {
+      background-color: #1a1a1a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
   </style>
 </head>
 <body>
@@ -77,11 +134,55 @@
         <p>A spectacular concert from Taylor Swift, featuring songs from every era of her music.</p>
         <p><strong>Event date:</strong> 17–18 Mei 2025</p>
         <p><strong>Location:</strong> Gelora Bung Karno, Jakarta</p>
-        <button class="ticket-button">Get ticket</button>
+        <button class="ticket-button" onclick="openPopup()">Get ticket</button>
         <span class="status-available">Available</span>
         <div class="notification mt-3">****gy44 has purchased a VIP ticket <strong>Taylor Swift – The Eras Tour</strong> 1 minute ago</div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="ticketPopup">
+  <div class="Popup-content text-center">
+    <button class="close-btn" onclick="closePopup()">&times;</button>
+    <h5 class="fw-bold mb-1">Ticket Reservation <span class="fw-normal">Taylor Swift – The Eras Tour</span></h5>
+    <p class="mb-4">Please fill out the ticket reservation form below:</p>
+
+    <div class="popup-form">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <label for="quantity" class="mb-0">Ticket quantity :</label>
+        <input type="number" id="quantity" class="form-control w-50 ms-2" placeholder="Input number" min="1" max="10" />
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <label for="category" class="mb-0">Ticket categories :</label>
+        <select id="category" class="form-select w-50 ms-2">
+          <option value="">Select categories</option>
+          <option value="Regular">Regular</option>
+          <option value="VIP" disabled>VIP (Sold Out)</option>
+          <option value="Festival" disabled>Festival (Sold Out)</option>
+        </select>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <label class="mb-0">Total :</label>
+        <div id="totalDisplay" class="fw-bold w-50 text-end">IDR 0</div>
+      </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+    <label for="payment">Payment Method :</label>
+    <select id="payment" class="form-select w-50 ms-2">
+      <option value="">Select payment</option>
+      <option value="Credit Card">Credit Card</option>
+      <option value="Bank Transfer">Bank Transfer</option>
+      <option value="QRIS">QRIS</option>
+    </select>
+  </div>
+</div>
+
+   <button class="btn mt-4 px-4 py-2" id="continueBtn" style="background-color: #8a63d2; color: white; border-radius: 20px;">
+      Continue to Payment
+    </button>
   </div>
 </div>
 
@@ -125,5 +226,80 @@
   </div>
 </div>
 
+<script>
+  function openPopup() {
+    document.getElementById("ticketPopup").classList.add("show");
+    resetForm();
+  }
+
+  function closePopup() {
+    document.getElementById("ticketPopup").classList.remove("show");
+  }
+
+  function resetForm() {
+    document.getElementById("quantity").value = '';
+    document.getElementById("category").value = '';
+    document.getElementById("payment").value = '';
+    document.getElementById("totalDisplay").textContent = "IDR 0";
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const continueBtn = document.getElementById("continueBtn");
+    const quantityInput = document.getElementById("quantity");
+    const categorySelect = document.getElementById("category");
+    const paymentSelect = document.getElementById("payment");
+    const totalDisplay = document.getElementById("totalDisplay");
+
+    const prices = {
+      "Regular": 2000000,
+      "VIP": 5000000,
+      "Festival": 3500000
+    };
+
+    function updateTotal() {
+      const qty = parseInt(quantityInput.value) || 0;
+      const category = categorySelect.value;
+      const price = prices[category] || 0;
+      const total = qty * price;
+      totalDisplay.textContent = `IDR ${total.toLocaleString("id-ID")}`;
+    }
+
+    quantityInput.addEventListener("input", updateTotal);
+    categorySelect.addEventListener("change", updateTotal);
+
+    continueBtn.addEventListener("click", function () {
+      const quantity = parseInt(quantityInput.value.trim());
+      const category = categorySelect.value.trim();
+      const payment = paymentSelect.value.trim();
+
+      if (!quantity || quantity <= 0) {
+        alert("Please enter a valid quantity of at least 1.");
+        return;
+      }
+
+      if (quantity > 10) {
+        alert("You can only purchase up to 10 tickets at once.");
+        return;
+      }
+
+      if (!category) {
+        alert("Please select a ticket category.");
+        return;
+      }
+
+      if (category === "VIP" || category === "Festival") {
+        alert("Sorry, the selected ticket category is sold out.");
+        return;
+      }
+
+      if (!payment) {
+        alert("Please select a payment method.");
+        return;
+      }
+
+      window.location.href = "payment.html";
+    });
+  });
+</script>
 </body>
 </html>
