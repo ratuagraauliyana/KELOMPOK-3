@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FindUrTicket - Verify Code</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .left {
+      flex: 1;
+      background: url('image/Register.jpeg');
+    }
+
+    .logo {
+      position: fixed;
+      right: 30px;
+      width: 120px;
+      z-index: 999;
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      gap: 15px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 10px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .code-input {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .code-input input {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #444;
+    }
+
+    a {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <img src="image/Logo.png" alt="Logo" class="logo" />
+  <div class="container">
+    <div class="left"></div>
+    <div class="right">
+      <h2>Verify Code</h2>
+      <p>We just sent the code to your email</p>
+      <p><strong>your@email.com</strong></p>
+      <div class="code-input">
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+      </div>
+      <p>Didn't Receive OTP?</p>
+      <p><a href="#">Resend code</a></p>
+      <button class="btn" onclick="window.location.href='verifysuccess.html'">Verify</button>
+    </div>
+  </div>
+</body>
+</html>
